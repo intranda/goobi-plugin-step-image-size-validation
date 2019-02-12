@@ -63,7 +63,9 @@ riot.tag2('image-size-validation', '<link rel="stylesheet" href="/goobi/plugins/
 	    this.generalOpts = window[window["plugin_name"]];
 	    this.showAll = true;
 	    this.selectedImage = undefined;
-	    this.imageListUrl = "/goobi/api/image/list/" + this.generalOpts.processId + "/media";
+
+		this.imageListUrl = "/goobi/plugins/isv/process/"+ this.generalOpts.processId +"/media/list";
+		console.log("call url ", this.imageListUrl);
 
 		this.on("mount", function() {
 		    console.log("mounting image-size-validation", this.imageListUrl)

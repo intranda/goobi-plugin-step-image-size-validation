@@ -8,8 +8,9 @@ public class Routes {
     private static Gson gson = new Gson();
 
     public static void initRoutes(Service http) {
-        http.path("/image-size-validation", () -> {
-            http.post("/process/:processid/save", Handlers.save);
+        http.path("/isv", () -> {
+            http.get("/process/:processid/media/list", Handlers.mediaList, gson::toJson);
+            http.get("/healthcheck", Handlers.healthcheck);
         });
     }
 }

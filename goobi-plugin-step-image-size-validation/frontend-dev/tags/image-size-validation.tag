@@ -64,8 +64,9 @@
 	    this.generalOpts = window[window["plugin_name"]]; 
 	    this.showAll = true;
 	    this.selectedImage = undefined;
-	    this.imageListUrl = "/goobi/api/image/list/" + this.generalOpts.processId + "/media";
-	
+// 	    this.imageListUrl = "/goobi/api/image/list/" + this.generalOpts.processId + "/media";
+		this.imageListUrl = "/goobi/plugins/isv/process/"+ this.generalOpts.processId +"/media/list";
+		console.log("call url ", this.imageListUrl);
 	    
 		this.on("mount", function() {
 		    console.log("mounting image-size-validation", this.imageListUrl)
@@ -85,7 +86,7 @@
 		    	return Q.all(promises);
 		    })
 		    .then(function(list) {
-		    	this.imageList = list;
+		    	this.imageList = list; 
 		    	this.reference = this.imageList[0];
 		    	this.update();
 		    }.bind(this));
