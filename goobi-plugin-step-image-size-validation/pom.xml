@@ -9,8 +9,8 @@
 	</properties>
 	<repositories>
 		<repository>
-			<id>intranda</id>
-			<url>https://nexus.intranda.com/repository/intranda</url>
+			<id>intranda-public</id>
+			<url>https://nexus.intranda.com/repository/maven-public</url>
 		</repository>
 	</repositories>
 	<dependencies>
