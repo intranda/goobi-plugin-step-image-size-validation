@@ -27,28 +27,29 @@ public class Handlers {
     private static Gson gson = new Gson();
 
     public static Route mediaList = (req, res) -> {
-    	Process p = ProcessManager.getProcessById(Integer.parseInt(req.params("processid")));
+        Process p = ProcessManager.getProcessById(Integer.parseInt(req.params("processid")));
         Path mediaFolder = Paths.get(p.getImagesTifDirectory(false));
-        
-        HttpServletRequest request = req.raw();
-        String baseUrl = request.getRequestURL().substring(0, request.getRequestURL().indexOf("plugins/")) +  "api/image/" + p.getId() + "/media/";
-        
-        try(Stream<Path> imagePaths = Files.list(mediaFolder)) {
-    		List<URI> images = imagePaths.map(path -> URI.create(baseUrl + path.getFileName().toString()))
-    		.sorted().collect(Collectors.toList());
-    		
-    		String json = "[" + StringUtils.join(images, ",") + "]";
-    		res.header("content-type", MediaType.APPLICATION_JSON);
-//    		OutputStream os = res.raw().getOutputStream();
-//    		os.write(json.getBytes(Charset.forName("utf-8")));
-    		return images;
-    	}
 
-//        return "";
+        HttpServletRequest request = req.raw();
+        String baseUrl = request.getRequestURI().substring(0, request.getRequestURI().indexOf("plugins/")) + "api/image/" + p.getId() + "/media/";
+
+        try (Stream<Path> imagePaths = Files.list(mediaFolder)) {
+            List<URI> images = imagePaths.map(path -> URI.create(baseUrl + path.getFileName().toString()))
+                    .sorted()
+                    .collect(Collectors.toList());
+
+            String json = "[" + StringUtils.join(images, ",") + "]";
+            res.header("content-type", MediaType.APPLICATION_JSON);
+            //    		OutputStream os = res.raw().getOutputStream();
+            //    		os.write(json.getBytes(Charset.forName("utf-8")));
+            return images;
+        }
+
+        //        return "";
     };
-    
+
     public static Route healthcheck = (req, res) -> {
-    	return "Plugin api is working";
+        return "Plugin api is working";
     };
 
 }
