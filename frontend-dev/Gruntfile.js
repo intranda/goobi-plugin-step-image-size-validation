@@ -17,18 +17,18 @@ module.exports = function(grunt) {
             main: {
                 files: [
                     {
-                        expand:true, 
-                        src: ['css/*.css', 'js/*.js'], 
+                        expand:true,
+                        src: ['css/*.css', 'js/*.js'],
                         dest: '../src/main/resources/frontend/'
                     },
                     {
-                        expand:true, 
-                        src: ['../src/main/resources/frontend/**'], 
+                        expand:true,
+                        src: ['../src/main/resources/frontend/**'],
                         dest: '/opt/digiverso/goobi/static_assets/plugins/intranda_step_image-size-validation/',
                         rename: function(dest, src) {
                             return dest + ( src.replace(/^..\/src\/main\/resources\/frontend\/?/ ,"") );
                         }
-                    } 
+                    }
                 ],
             }
         },
@@ -47,6 +47,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-watcher');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('default', ['riot', 'copy', 'watcher']);
-
+    grunt.registerTask('default', ['riot', 'copy']);
+    grunt.registerTask('develop', ['riot', 'copy', 'watcher']);
 };
