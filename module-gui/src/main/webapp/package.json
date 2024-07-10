@@ -1,8 +1,12 @@
 {
   "name": "goobi_plugin_step_image-size-validator",
   "version": "0.1.8",
+  "scripts": {
+    "dev": "grunt watcher",
+    "build": "grunt"
+  },
   "devDependencies": {
-    "grunt": "^1.0.1",
+    "grunt": "^1.4.1",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-riot": "^0.1.8",
     "grunt-watcher": "^1.0.0"
