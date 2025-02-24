@@ -10,6 +10,7 @@
   <artifactId>plugin-step-image-size-validation</artifactId>
   <packaging>pom</packaging>
   <modules>
+    <module>module-api</module>
     <module>module-base</module>
     <module>module-gui</module>
   </modules>

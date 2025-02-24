@@ -1,7 +1,6 @@
 package de.intranda.goobi.plugins;
 
 
-import de.intranda.goobi.plugins.size_validation.Routes;
 import lombok.Data;
 import lombok.extern.log4j.Log4j;
 import net.xeoh.plugins.base.annotations.PluginImplementation;
@@ -10,21 +9,14 @@ import org.goobi.production.enums.PluginGuiType;
 import org.goobi.production.enums.PluginType;
 import org.goobi.production.enums.StepReturnValue;
 import org.goobi.production.plugin.interfaces.IGuiPlugin;
-import org.goobi.production.plugin.interfaces.IRestPlugin;
 import org.goobi.production.plugin.interfaces.IStepPlugin;
-import spark.Service;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 
 @Data
 @PluginImplementation
 @Log4j
-public class SizeValidationPlugin implements IGuiPlugin, IStepPlugin, IRestPlugin {
+public class SizeValidationPlugin implements IGuiPlugin, IStepPlugin {
     private Step step;
     private String returnPath;
     public static String TITLE = "intranda_step_image-size-validation";
@@ -77,11 +69,6 @@ public class SizeValidationPlugin implements IGuiPlugin, IStepPlugin, IRestPlugi
     @Override
     public String[] getJsPaths() {
         return new String[] { "riot.min.js", "q.js", "tags.js", "app.js"};
-    }
-
-    @Override
-    public void initRoutes(Service http) {
-        Routes.initRoutes(http);
     }
     
     @Override
