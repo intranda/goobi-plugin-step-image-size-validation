@@ -5,6 +5,6 @@
     <artifactId>plugin-step-image-size-validation</artifactId>
     <version>25.02</version>
   </parent>
-  <artifactId>plugin-step-image-size-validation-base</artifactId>
+  <artifactId>plugin-step-image-size-validation-api</artifactId>
   <packaging>jar</packaging>
 </project>
