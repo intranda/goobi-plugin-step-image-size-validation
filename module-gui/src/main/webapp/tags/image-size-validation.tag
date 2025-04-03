@@ -66,7 +66,7 @@
 	    this.selectedImage = undefined;
 		const goobi_path = location.pathname.split('/')[1];
 // 	    this.imageListUrl = "/goobi/api/image/list/" + this.generalOpts.processId + "/media";
-		this.imageListUrl = "/${goobi_path}/plugins/isv/process/"+ this.generalOpts.processId +"/media/list";
+		this.imageListUrl = "/${goobi_path}/api/plugins/isv/process/"+ this.generalOpts.processId +"/media/list";
 		console.log("call url ", this.imageListUrl);
 	    
 		this.on("mount", function() {
@@ -172,7 +172,7 @@
 		
 		save() {
 		    $.ajax( {
-		        url: "/${goobi_path}/plugins/{plugin_name}/process/" + this.generalOpts.processId + "/save",
+		        url: "/${goobi_path}/api/plugins/{plugin_name}/process/" + this.generalOpts.processId + "/save",
 		        type: "POST",
 		        contentType: "application/json; charset=utf-8",
 		        data: JSON.stringify(this.ddHistory[this.ddIdx])
