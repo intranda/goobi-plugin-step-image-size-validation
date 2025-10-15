@@ -15,11 +15,8 @@
 
 <script>
 
-	console.log("[imageInfo] Script initializing");
-
 	export default {
 		onBeforeMount() {
-			console.log("[imageInfo] onBeforeMount called");
 			this.imageInfo = {
 				width : 0,
 				height: 0
@@ -31,20 +28,11 @@
 			};
 		},
 		onMounted() {
-			console.log("[imageInfo] onMounted called");
-			console.log("[imageInfo] props:", this.props);
-			console.log("[imageInfo] props.source:", this.props.source);
-			console.log("[imageInfo] props.reference:", this.props.reference);
-			console.log("[imageInfo] props.index:", this.props.index);
-
 			this.imageInfo = this.props.source;
 			// Remove file extension from @id if present (e.g., .jpg, .tif, .tiff)
 			let imageId = this.imageInfo["@id"];
 			imageId = imageId.replace(/\.(jpg|jpeg|tif|tiff|png)$/i, '');
 			this.imageUrl = imageId + "/full/!" + this.thumbnail.width + "," + this.thumbnail.height + "/0/default.jpg";
-			console.log("[imageInfo] Original @id:", this.imageInfo["@id"]);
-			console.log("[imageInfo] Cleaned imageId:", imageId);
-			console.log("[imageInfo] Final imageUrl:", this.imageUrl);
 			this.update();
 		},
 		getMaxDiff(image1, image2) {
