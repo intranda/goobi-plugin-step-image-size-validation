@@ -1,0 +1,16 @@
+<app>
+
+    <image-size-validation></image-size-validation>
+
+    <script>
+        import imageSizeValidation from './image-size-validation.riot';
+
+        const goobi_path = location.pathname.split('/')[1];
+
+        export default {
+            components: {
+                'image-size-validation': imageSizeValidation,
+            },
+        }
+    </script>
+</app>

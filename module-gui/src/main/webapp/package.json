@@ -1,14 +1,25 @@
 {
   "name": "goobi_plugin_step_image-size-validator",
-  "version": "0.1.8",
+  "version": "1.0.0",
+  "main": "main.js",
   "scripts": {
-    "dev": "grunt watcher",
-    "build": "grunt"
+    "build": "webpack-cli --mode=production",
+    "dev": "webpack-cli --mode=development --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "riot": "^6.0.4",
+    "webpack-cli": "^5.1.4"
   },
   "devDependencies": {
-    "grunt": "^1.4.1",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-riot": "^0.1.8",
-    "grunt-watcher": "^1.0.0"
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@riotjs/compiler": "^5.0.0",
+    "@riotjs/webpack-loader": "^5.0.0",
+    "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^13.0.0",
+    "css-loader": "^7.1.2",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.91.0"
   }
 }

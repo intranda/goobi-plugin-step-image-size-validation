@@ -1,0 +1,82 @@
+<image-info>
+
+	<div id="image-block_{props.index}" class="image-block {getMaxDiff(imageInfo, props.reference)}">
+
+		<div class="image">
+			<img src="{imageUrl}" data-id="{imageInfo['@id']}"></img>
+		</div>
+
+		<div class="info">
+			<span class="image-label {getWidthDiff(imageInfo, props.reference)}">Breite: {imageInfo.width}</span>
+			<span class="image-label {getHeightDiff(imageInfo, props.reference)}">Höhe: {imageInfo.height}</span>
+		</div>
+
+	</div>
+
+<script>
+
+	console.log("[imageInfo] Script initializing");
+
+	export default {
+		onBeforeMount() {
+			console.log("[imageInfo] onBeforeMount called");
+			this.imageInfo = {
+				width : 0,
+				height: 0
+			};
+
+			this.thumbnail = {
+				width : 1000,
+				height : 300
+			};
+		},
+		onMounted() {
+			console.log("[imageInfo] onMounted called");
+			console.log("[imageInfo] props:", this.props);
+			console.log("[imageInfo] props.source:", this.props.source);
+			console.log("[imageInfo] props.reference:", this.props.reference);
+			console.log("[imageInfo] props.index:", this.props.index);
+
+			this.imageInfo = this.props.source;
+			// Remove file extension from @id if present (e.g., .jpg, .tif, .tiff)
+			let imageId = this.imageInfo["@id"];
+			imageId = imageId.replace(/\.(jpg|jpeg|tif|tiff|png)$/i, '');
+			this.imageUrl = imageId + "/full/!" + this.thumbnail.width + "," + this.thumbnail.height + "/0/default.jpg";
+			console.log("[imageInfo] Original @id:", this.imageInfo["@id"]);
+			console.log("[imageInfo] Cleaned imageId:", imageId);
+			console.log("[imageInfo] Final imageUrl:", this.imageUrl);
+			this.update();
+		},
+		getMaxDiff(image1, image2) {
+			let widthDiff = Math.abs(image1.width - image2.width);
+			let heightDiff = Math.abs(image1.height - image2.height);
+			let diff = Math.max(widthDiff, heightDiff);
+
+			return this.getDiffClass(diff);
+		},
+		getWidthDiff(image1, image2) {
+			let diff = Math.abs(image1.width - image2.width);
+			return this.getDiffClass(diff);
+		},
+		getHeightDiff(image1, image2) {
+			let diff = Math.abs(image1.height - image2.height);
+			return this.getDiffClass(diff);
+		},
+		getDiffClass(diff) {
+			let className;
+			if(diff > 50) {
+				className = "largeDiff";
+			} else if(diff > 5) {
+				className = "smallDiff";
+			} else if(diff > 0) {
+				className = "minimalDiff";
+			} else {
+				className = "exact";
+			}
+			return className;
+		}
+	}
+
+</script>
+
+</image-info>
