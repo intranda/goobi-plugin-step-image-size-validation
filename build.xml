@@ -3,6 +3,8 @@
 		<exec executable="mvn">
 			<arg value="package"/>
 		</exec>
-		<copy file="target/plugin_intranda_step_image-size-validation.jar" todir="/opt/digiverso/goobi/plugins/step/"/>
+		<copy file="module-base/target/plugin-step-image-size-validation-base.jar" todir="/opt/digiverso/goobi/plugins/step/"/>
+		<copy file="module-api/target/plugin-step-image-size-validation-api.jar" todir="/opt/digiverso/goobi/plugins/GUI/"/>
+		<copy file="module-gui/target/plugin-step-image-size-validation-gui.jar" todir="/opt/digiverso/goobi/plugins/GUI/"/>
 	</target>
 </project>

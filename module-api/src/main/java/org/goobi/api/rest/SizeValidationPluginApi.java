@@ -31,11 +31,19 @@ public class SizeValidationPluginApi {
         Process p = ProcessManager.getProcessById(processid);
         java.nio.file.Path mediaFolder = Paths.get(p.getImagesTifDirectory(false));
 
-//        String baseUrl = request.getMethod().substring(0, request.getRequestURI().indexOf("plugins/")) + "api/image/" + p.getId() + "/media/";
-        String baseUrl = uriInfo.getPath().substring(0, uriInfo.getPath().indexOf("plugins/")) + "api/image/" + p.getId() + "/media/";
+        // Get the full base URI including scheme, host, and port
+        String baseUri = uriInfo.getBaseUri().toString();
+        // Construct the full URL with the correct path: /api/process/image/{processId}/media/
+        String baseUrl = baseUri + "process/image/" + p.getId() + "/media/";
 
         try (Stream<java.nio.file.Path> imagePaths = Files.list(mediaFolder)) {
-            List<URI> images = imagePaths.map(path -> URI.create(baseUrl + path.getFileName().toString()))
+            List<URI> images = imagePaths.map(path -> {
+                String fileName = path.getFileName().toString();
+                // Remove file extension for IIIF compatibility
+                String fileNameWithoutExt = fileName.contains(".") ?
+                    fileName.substring(0, fileName.lastIndexOf('.')) : fileName;
+                return URI.create(baseUrl + fileNameWithoutExt);
+            })
                     .sorted()
                     .collect(Collectors.toList());
 
